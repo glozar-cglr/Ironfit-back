@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const {Schema} = mongoose
+const {Schema} = mongoose;
 
 const userSchema = new Schema(
     {
@@ -40,7 +40,6 @@ const userSchema = new Schema(
                 type:String,
                 default: "Default"
             }
-
         },
         profile:{
             type:Schema.Types.ObjectId,
