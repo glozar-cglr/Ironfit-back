@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 //import las cosas importantes
-const Trainers = require("../models/Trainers")
+const Trainees = require("../models/Trainees")
 const {veryToken} = require("../utils/auth")
 
-/* GET Trainers page.
+/* GET Trainees page.
     C.R.U.D
     C = Create,
     R = Read,
@@ -21,8 +21,8 @@ router.post("/", veryToken, (req, res, next) => {
     //para crear una propiedad (CASA)
     const { _id: _owner} = req.user
 
-    Trainers.create({...req.body, _owner}).then((Trainers) => {
-        res.status(201).json({result:Trainers})
+    Trainees.create({...req.body, _owner}).then((Trainees) => {
+        res.status(201).json({result:Trainees})
     }).catch((err) => {
         res.status(400).json({msg:"Algo salio mal",err})
     })
@@ -31,7 +31,7 @@ router.post("/", veryToken, (req, res, next) => {
 //RUTA PARA LEER
 
 router.get('/', veryToken, (req, res, next) => {
-    Trainers.find(req.query)
+    Trainees.find(req.query)
         .populate("_user", "email name profile_picture")  // <------ Populate
         .then((properties) => {
             res.status(200).json({result:properties})
@@ -47,8 +47,8 @@ router.get('/:id', veryToken, (req, res, next) => {
     //req.params
     const {id} = req.params
     .populate("_user", "email name profile_picture")  // <------ Populate
-    Trainers.findById(id)
-        .then((Trainers) => {
+    Trainees.findById(id)
+        .then((Trainees) => {
             res.status(200).json({result:properties})
         })
         .catch((err) =>{
@@ -61,10 +61,10 @@ router.get('/:id', veryToken, (req, res, next) => {
 
 router.patch("/:id", veryToken, (req,res,next) => {
     const {id} = req.params;
-    Trainers.findByIdAndUpdate(id, req.body, { new : true })
+    Trainees.findByIdAndUpdate(id, req.body, { new : true })
         .populate("_user", "email name profile_picture")
-        .then((Trainers) => {
-            res.status(200).json({result:Trainers})
+        .then((Trainees) => {
+            res.status(200).json({result:Trainees})
         })
         .catch((err) => {
             res.status(400).json({msg:"Something went wrong", err})
@@ -76,8 +76,8 @@ router.patch("/:id", veryToken, (req,res,next) => {
 
 router.delete("/:id", veryToken, (req,res,next) => {
     const {id} = req.params;
-    Trainers.findByIdAndRemove(id)
-        .then((Trainers) => {
+    Trainees.findByIdAndRemove(id)
+        .then((Trainees) => {
             res.status(200).json({msg: "The user has been removed"})
         })
         .catch((err) => {
