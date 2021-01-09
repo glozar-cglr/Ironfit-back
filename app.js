@@ -35,9 +35,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users')
+const usersRouter = require('./routes/users');
+const trainerRouter = require('./routes/trainers');
+const traineesRouter = require('./routes/trainees');
 
 app.use('/api', indexRouter);
 app.use('/api/user', usersRouter);
+app.use('/api/trainers', trainerRouter);
+app.use('/api/trainees', traineesRouter);
+
+
 
 module.exports = app;
