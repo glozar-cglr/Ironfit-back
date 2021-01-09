@@ -28,6 +28,21 @@ router.post('/signup', (req,res) => {
 
 });
 
+//Editar (update)
+// post patch
+
+router.patch("/:id", veryToken, (req,res,next) => {
+    const {id} = req.params;
+    User.findByIdAndUpdate(id, req.body, { new : true })
+        .then((User) => {
+            res.status(200).json({result:Trainers})
+        })
+        .catch((err) => {
+            res.status(400).json({msg:"Something went wrong", err})
+        })
+
+})
+
 router.post("/login", (req,res,next) => {
     const {email, password} = req.body;
 
