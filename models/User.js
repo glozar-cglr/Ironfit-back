@@ -3,6 +3,8 @@ const {Schema} = mongoose;
 
 const userSchema = new Schema(
     {
+//Required Fields
+
         email:{
             type:String,
             required: [true, "Please, add an email"],
@@ -27,6 +29,9 @@ const userSchema = new Schema(
             type:String,
             required: [true, "A last name is required to proceed"]
         },
+
+//Not required Fields
+
         role: {
             type:String,
             enum: [,"TRAINER","TRAINEE"]
