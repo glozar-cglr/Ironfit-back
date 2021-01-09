@@ -41,11 +41,6 @@ const userSchema = new Schema(
                 default: "Default"
             }
         },
-        profile:{
-            type:Schema.Types.ObjectId,
-            refPath: 'role',
-            required:true
-        }
         
     },
     {timestamps:true}
