@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 //Importing all things needed
 const bcrypt = require('bcrypt');
-const User = require('../models/User')
+const User = require('../models/User');
 const jwt = require("jsonwebtoken")
-const {clearREs} = require('/utils/auth')
+const {clearRes, veryToken} = require('../utils/auth')
 
 router.post('/signup', (req,res) => {
     const {name, last_name, email, password, confirmPassword} = req.body;
@@ -74,7 +74,7 @@ router.post("/login", (req,res,next) => {
     })
 });
 
-router.poast('/logout', (req,res) => {
+router.post('/logout', (req,res) => {
     res.clearCookie('token').json({msg:"Come back soon!!"})
 })
 
