@@ -20,6 +20,7 @@ const trainerSchema = new Schema (
                     "Volleyball", "Yoga"]
         }],
         trainer_type: {
+            type:String,
             required: [true, "You must specify the experience level as a teacher"],
             enum: ["Professional Trainer", "Experienced Athlete"]
         },
@@ -36,8 +37,9 @@ const trainerSchema = new Schema (
             }
         },
         country: {
+            type:String,
             required: [true, "You must provide your location"],
-            enum: countryList.map(e => e.name)
+            enum: countryList.getNames()
         },
         city: {
             type:String,
@@ -47,8 +49,11 @@ const trainerSchema = new Schema (
             online: Boolean,
             live: Boolean
         },
-        birthday: d
+        birthday: String
 
 
     }
 )
+
+
+module.exports = mongoose.model("Trainer", trainerSchema);
