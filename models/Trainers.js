@@ -49,7 +49,12 @@ const trainerSchema = new Schema (
             online: Boolean,
             live: Boolean
         },
-        birthday: String
+        birthday: String,
+        description: String,
+        lessons: [String],
+        students:[String],
+        rank:[Number],
+        img:String
 
 
     }
