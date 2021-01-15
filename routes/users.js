@@ -12,14 +12,25 @@ router.post('/signup', (req,res) => {
     if (password !== confirmPassword) return res.status(403).json({msg:"Passwords do not match"})
 
     bcrypt.hash(password,10).then((hashedPassword) => {
-        const user = {
+        const user_body = {
             name,
             last_name,
             email,
             password: hashedPassword
         };
 
-        User.create(user).then(() => {
+        User.create(user_body).then((user) => {
+            const newUser = clearRes(user.toObject())
+
+                const token = jwt.sign({id:user._id},process.env.SECRET, {
+                    expiresIn:"1d"
+                });
+
+                res.cookie("token", token, {
+                    expires: new Date(Date.now + 86400000),
+                    secure: false,
+                    httpOnly: true,
+                }).json({user:newUser,code:200})
             res.status(200).json({msg:"the user was create"})
         }).catch((err) => {
             res.status(400).json({msg:"There as an error", err})
@@ -34,7 +45,8 @@ router.post('/signup', (req,res) => {
 router.patch("/:id", veryToken, (req,res,next) => {
     const {id} = req.params;
     User.findByIdAndUpdate(id, req.body, { new : true })
-        .then((User) => {
+        .then((Trainers) => {
+            
             res.status(200).json({result:Trainers})
         })
         .catch((err) => {
