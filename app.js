@@ -22,7 +22,7 @@ const app = express();
 //utilizo cors para darle permiso a otras apps
 app.use(
     cors({
-        origin:["http://localhost:3001"],
+        origin:["http://localhost:3001", "https://iron-fitness.herokuapp.com"],
         credentials:true,
         
     })
@@ -44,6 +44,10 @@ app.use('/api/user', usersRouter);
 app.use('/api/trainers', trainerRouter);
 app.use('/api/trainees', traineesRouter);
 
-
-
+//esto es muy importante es para seguir en la ruta despues de actualizar
+//podamos entrar a cualquier ruta
+app.use("*", (req,res)=>{
+    res.sendFile(path.join(__dirname, "public","index.html"));
+   });
+   
 module.exports = app;
