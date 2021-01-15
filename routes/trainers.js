@@ -19,9 +19,9 @@ const {veryToken} = require("../utils/auth")
 router.post("/", veryToken, (req, res, next) => {
     //voy a sacar el id de la persona loggeada
     //para crear una propiedad (CASA)
-    const { _id: _owner} = req.user
+    const { _id: _user} = req.user
 
-    Trainers.create({...req.body, _owner}).then((Trainers) => {
+    Trainers.create({...req.body, _user}).then((Trainers) => {
         res.status(201).json({result:Trainers})
     }).catch((err) => {
         res.status(400).json({msg:"Algo salio mal",err})
