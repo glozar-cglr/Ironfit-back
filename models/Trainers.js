@@ -16,7 +16,7 @@ const trainerSchema = new Schema (
             enum: ["American Football", "Athletics", "Archery", "Badminton", "Baseball", 
                     "Basketball", "Body Building", "Boxing", "Canoeing", "Cricket", "Cycling", "Equestrian", "Fencing",
                     "Football", "Golf", "Gymnastics", "Gym","Hockey", "Horse Racing", "Judo",
-                    "Martial Arts", "Rugby", "Squash", "Swimming","Table TEnnis", "Taekwondo", "Tennis",
+                    "Martial Arts", "Rugby", "Squash", "Swimming","Table Tennis", "Taekwondo", "Tennis",
                     "Volleyball", "Yoga"]
         }],
         trainer_type: {
@@ -49,7 +49,12 @@ const trainerSchema = new Schema (
             online: Boolean,
             live: Boolean
         },
-        birthday: String
+        birthday: String,
+        description: String,
+        lessons: [String],
+        students:[String],
+        rank:[Number],
+        img:String
 
 
     }
