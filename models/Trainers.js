@@ -24,18 +24,7 @@ const trainerSchema = new Schema (
             required: [true, "You must specify the experience level as a teacher"],
             enum: ["Professional Trainer", "Experienced Athlete"]
         },
-        video: String,
         description: String,
-        curriculum: {
-            url: {
-                type:String,
-                default: "https://icon-library.com/images/no-profile-pic-icon/no-profile-pic-icon-12.jpg"
-            },
-            public_id: {
-                type:String,
-                default: "Default"
-            }
-        },
         country: {
             type:String,
             required: [true, "You must provide your location"],
@@ -50,7 +39,6 @@ const trainerSchema = new Schema (
             live: Boolean
         },
         birthday: String,
-        description: String,
         lessons: [String],
         students:[String],
         rank:[Number],
