@@ -34,17 +34,11 @@ const userSchema = new Schema(
 
         role: {
             type:String,
-            enum: [,"TRAINER","TRAINEE"]
+            enum: ["TRAINER","TRAINEE"]
         },
         profile_picture:{
-            url: {
-                type:String,
-                default: "https://icon-library.com/images/no-profile-pic-icon/no-profile-pic-icon-12.jpg"
-            },
-            public_id: {
-                type:String,
-                default: "Default"
-            }
+            type:String,
+            default:"https://www.centraltrials.com/wp-content/uploads/2016/11/User-Default.jpg"
         },
         
     },

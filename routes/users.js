@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken")
 const {clearRes, veryToken} = require('../utils/auth')
 
 router.post('/signup', (req,res) => {
-    const {name, last_name, email, password, confirmPassword} = req.body;
+    const {name, last_name, email, password, confirmPassword, role, profile_picture} = req.body;
 
     if (password !== confirmPassword) return res.status(403).json({msg:"Passwords do not match"})
 
@@ -16,7 +16,9 @@ router.post('/signup', (req,res) => {
             name,
             last_name,
             email,
-            password: hashedPassword
+            password: hashedPassword,
+            role,
+            profile_picture
         };
 
         User.create(user_body).then((user) => {
