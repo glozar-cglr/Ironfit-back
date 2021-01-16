@@ -10,7 +10,7 @@ const traineeSchema = new Schema (
             required: [true, "To register as trainer, we need a user"]
         },
         interest: {
-            type: String,
+            type: [String],
             enum: ["American Football", "Athletics", "Archery", "Badminton", "Baseball", 
                     "Basketball", "Body Building", "Boxing", "Canoeing", "Cricket", "Cycling", "Equestrian", "Fencing",
                     "Football", "Golf", "Gymnastics", "Gym","Hockey", "Horse Racing", "Judo",
